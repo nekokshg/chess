@@ -80,7 +80,11 @@ def main():
                     sqSelected = (row, col)
                     playerClicks.append(sqSelected) #append for both 1st and 2nd clicks
                 if len(playerClicks) == 2: #after the 2nd click
-                    
+                    move = chessEngine.Move(playerClicks[0], playerClicks[1], gs.board)
+                    print(move.getChessNotation())
+                    gs.makeMove(move)
+                    sqSelected = () #reset user clicks
+                    playerClicks = []
 
         drawGameState(screen, gs)
         clock.tick(MAX_FPS)
