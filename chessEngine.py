@@ -21,6 +21,12 @@ class GameState():
         ]
         self.whiteToMove = True
         self.moveLog = []
+    
+    def makeMove(self, move):
+        self.board[move.startRow][move.startCol] = "--"
+        self.board[move.endRow][move.endCol] = move.pieceMoved
+        self.moveLog.append(move) #log the move so we can undo it later
+        self.whiteToMove = not self.whiteToMove #swap players
 
 class Move():
     # maps keys to values
