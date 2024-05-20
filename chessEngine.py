@@ -19,6 +19,8 @@ class GameState():
             ["wp", "wp", "wp", "wp", "wp", "wp", "wp", "wp"],
             ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"]
         ]
+        self.moveFunctions = {'p' : self.getPawnMoves, 'R' : self.getRookMoves, 'N' : self.getKnightMoves,
+                              'B' : self.getBishopMoves, 'Q' : self.getQueenMoves, 'K' : self.getKingMoves}
         self.whiteToMove = True
         self.moveLog = []
 
@@ -50,10 +52,7 @@ class GameState():
                 turn = self.board[r][c][0]
                 if (turn == 'w' and self.whiteToMove) or (turn == 'b' and not self.whiteToMove):
                     piece = self.board[r][c][1]
-                    if piece == 'p':
-                        self.getPawnMoves(r, c, moves)
-                    elif piece == 'R':
-                        self.getRookMoves(r, c, moves)
+                    self.moveFunctions[piece](r, c, moves) #calls the appropriate move function based on piece type (instead of using several if statements)
         return moves
                     
     ''' Get all the pawn moves for the pawn located at row, col and add these moves to the list '''
@@ -68,15 +67,27 @@ class GameState():
                     moves.append(Move((r, c), (r-1, c-1), self.board))
             if c+1 <= 7: #captures to the right
                 if self.board[r-1][c+1][0] == 'b': #enemy piece (black) to capture
-                    moves.append(Move((r, c), (r-1, c+1), self.board))
-
-        
+                    moves.append(Move((r, c), (r-1, c+1), self.board)) 
     
     ''' Get all the rook moves for the pawn located at row, col and add these moves to the list '''
     def getRookMoves(self, r, c, moves):
         pass
 
+    ''' Get all the knight moves for the pawn located at row, col and add these moves to the list '''
+    def getKnightMoves(self, r, c, moves):
+        pass
 
+    ''' Get all the bishop moves for the pawn located at row, col and add these moves to the list '''
+    def getBishopMoves(self, r, c, moves):
+        pass
+
+    ''' Get all the queen moves for the pawn located at row, col and add these moves to the list '''
+    def getQueenMoves(self, r, c, moves):
+        pass
+
+    ''' Get all the king moves for the pawn located at row, col and add these moves to the list '''
+    def getKingMoves(self, r, c, moves):
+        pass
 
 class Move():
     # maps keys to values
