@@ -95,6 +95,7 @@ def main():
             elif e.type == p.KEYDOWN:
                 if e.key == p.K_z: #undo when 'z' is pressed
                     gs.undoMove()
+                    moveMade = True
 
         if moveMade:
             validMoves = gs.getValidMoves()
