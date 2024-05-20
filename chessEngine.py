@@ -38,6 +38,33 @@ class GameState():
             self.board[move.endRow][move.endCol] = move.pieceCaptured
             self.whiteToMove = not self.whiteToMove #switch turns back
 
+    ''' All moves considering checks '''
+    def getValidMoves(self):
+        return self.getAllPossibleMoves() #for now we will not worry about checks
+    
+    ''' All moves without considering checks '''
+    def getAllPossibleMoves(self):
+        moves = []
+        for r in range(len(self.board)): #number of rows
+            for c in range(len(self.board[r])): #number of columns in given row
+                turn = self.board[r][c][0]
+                if (turn == 'w' and self.whiteToMove) and (turn == 'b' and not self.whiteToMove):
+                    piece = self.board[r][c][1]
+                    if piece == 'p':
+                        self.getPawnMoves(r, c, moves)
+                    elif piece == 'R':
+                        self.getRookMoves(r, c, moves)
+                    
+    ''' Get all the pawn moves for the pawn located at row, col and add these moves to the list '''
+    def getPawnMoves(self, r, c, moves):
+        pass
+    
+    ''' Get all the rook moves for the pawn located at row, col and add these moves to the list '''
+    def getRookMoves(self, r, c, moves):
+        pass
+
+
+
 class Move():
     # maps keys to values
     # key : value
