@@ -133,11 +133,10 @@ class GameState():
                 else: #off board
                     break
 
-
-
     ''' Get all the queen moves for the pawn located at row, col and add these moves to the list '''
     def getQueenMoves(self, r, c, moves):
-        pass
+        self.getRookMoves(r, c, moves)
+        self.getBishopMoves(r, c, moves)
 
     ''' Get all the king moves for the pawn located at row, col and add these moves to the list '''
     def getKingMoves(self, r, c, moves):
