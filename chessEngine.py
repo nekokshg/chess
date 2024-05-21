@@ -82,7 +82,23 @@ class GameState():
     
     ''' Get all the rook moves for the pawn located at row, col and add these moves to the list '''
     def getRookMoves(self, r, c, moves):
-        pass
+        directions = ((-1, 0), (0, -1), (1, 0), (0, 1))
+        enemyColor = "b" if self.whiteToMove else "w"
+        for d in directions:
+            for i in range(1, 8):
+                endRow = r + d[0] * i
+                endCol = c + d[1] * i
+                if 0 <= endRow < 8 and 0 <= endCol < 8: #on board
+                    endPiece = self.board[endRow][endCol]
+                    if endPiece == "--": #valid empty space
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                    elif endPiece[0] == enemyColor: #valid enemy piece
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                        break
+                    else: #invalid friendly piece
+                        break
+                else: #off board
+                    break
 
     ''' Get all the knight moves for the pawn located at row, col and add these moves to the list '''
     def getKnightMoves(self, r, c, moves):
