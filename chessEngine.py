@@ -165,7 +165,6 @@ class GameState():
         
         return moves
     
-    
     ''' All moves without considering checks '''
     def getAllPossibleMoves(self):
         moves = []
