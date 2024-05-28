@@ -137,9 +137,16 @@ def main():
                         playerClicks = [sqSelected]
             #key handlers
             elif e.type == p.KEYDOWN:
-                if e.key == p.K_z: #undo when 'z' is pressed
+                if e.key == p.K_z: #undo move when 'z' is pressed
                     gs.undoMove()
                     moveMade = True
+                    animate = False
+                if e.key == p.K_r: #reset board when 'r' is pressed
+                    gs = chessEngine.GameState()
+                    validMoves = gs.getValidMoves()
+                    sqSelected = ()
+                    playerClicks = []
+                    moveMade = False
                     animate = False
 
         if moveMade:
